@@ -88,7 +88,6 @@ Contributions are welcome! To contribute to Chatly:
 3. Make your changes and commit them: `git commit -m "Add your feature"`
 4. Push to the branch: `git push origin feature/your-feature-name`
 5. Create a pull request.
-6. live preview:https://wanj-kl.github.io/Chatly/
 
 Please ensure your code adheres to the existing style and includes appropriate comments.
 
@@ -99,3 +98,4 @@ License information is not specified in the provided repository details. It's re
 ## Acknowledgments
 
 While no specific acknowledgments are provided, we thank the open-source community for providing valuable tools and libraries that make projects like Chatly possible.
+LIVE PREVIEW: https://wanj-kl.github.io/Chatly/
