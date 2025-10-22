@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chatly — Login</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="auth-container">
+    <h1>Welcome To Chatly</h1>
+
+    <div class="card">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="eve@gmail.com" />
+
+      <label>Password</label>
+      <input id="password" type="password" placeholder="********" />
+
+      <div class="controls">
+        <button id="loginBtn">Login</button>
+      </div>
+
+<div class="signup">
+    <p>Dont have an account? <a href="signup.html" class="link">Signup</a></p>
+</div>
+
+      <div id="msg" class="muted"></div>
+    </div>
+  </div>
+
+  <script src="chatly.js"></script>
+ 
+<script>
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const msg = document.getElementById('msg');
+
+  if (!email || !password) { 
+    msg.textContent = 'Enter email and password'; 
+    return; 
+  }
+
+  // Fetch saved users from localStorage (since we’re not using a backend here)
+  const personalUser = JSON.parse(localStorage.getItem('personalUser'));
+  const parentUser = JSON.parse(localStorage.getItem('parentUser'));
+  const childUser = JSON.parse(localStorage.getItem('childUser'));
+
+  let currentUser = null;
+
+  if (personalUser && personalUser.email === email && personalUser.password === password) {
+    currentUser = personalUser;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    window.location.href = 'personal.html';
+  } 
+  else if (parentUser && parentUser.email === email && parentUser.password === password) {
+    currentUser = parentUser;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    window.location.href = 'parent.html';
+  } 
+  else if (childUser && childUser.email === email && childUser.password === password) {
+    currentUser = childUser;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    window.location.href = 'child.html';
+  } 
+  else {
+    msg.textContent = 'Invalid credentials. Please try again.';
+  }
+});
+</script>
+
+
+</body>
+</html>

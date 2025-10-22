@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatly| Personal Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body class="personal-dashboard">
+
+  <header>
+    <h1>Welcome </span>! </h1>
+    <p>You’re in safe mode with <strong>Chatly</strong>.</p>
+
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+
+  </header>
+
+  <main>
+    <section class="tips">
+      <h2>Today’s Safety Tips</h2>
+      <ul>
+        <li>Think before you click unknown links.</li>
+        <li>Use strong, unique passwords for every account.</li>
+        <li>Stay alert for suspicious messages.</li>
+      </ul>
+    </section>
+
+<section class="search-area">
+      <h2>Safe Search</h2>
+      <input type="text" id="searchInput" placeholder="Type what you want to learn about...">
+      <button id="searchBtn">Search</button>
+      <p id="searchResult"></p>
+    </section>
+
+  </main>
+
+  <script src="search.js"></script>
+</body>
+</html>

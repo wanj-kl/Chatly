@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Guardian — Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <h1 id="title">AI Guardian</h1>
+      <div>
+        <button id="logoutBtn" class="small">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="childArea" class="card" style="display:none;">
+        <h2>Child — SafeChat</h2>
+        <label>Age</label>
+        <input id="childAge" type="number" min="1" />
+
+        <label>Ask or paste text</label>
+        <textarea id="childContent" rows="5"></textarea>
+
+        <div class="controls">
+          <button id="analyzeBtn">Analyze Content</button>
+          <button id="playDivertBtn" class="muted">Play diversion (demo)</button>
+        </div>
+
+        <div id="result" class="result"></div>
+      </section>
+
+      <section id="parentArea" class="card" style="display:none;">
+        <h2>Parent Dashboard</h2>
+
+        <div class="row">
+          <div>
+            <label>Guardian email (for alerts)</label>
+            <input id="guardianEmail" type="email" />
+            <button id="saveSettings" class="small">Save</button>
+          </div>
+
+          <div style="margin-left:20px;">
+            <label>Link child account (by email)</label>
+            <input id="linkChildEmail" type="email" placeholder="child@example.com" />
+            <button id="linkChildBtn" class="small">Link</button>
+          </div>
+        </div>
+
+        <h3>Linked children</h3>
+        <ul id="linkedChildren"></ul>
+
+        <h3>Alerts</h3>
+        <ul id="alertsList" class="alerts"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <small>Prototype: Metta-like rules + AgentVerse proxy placeholders.</small>
+    </footer>
+  </div>
+
+  <script src="chatly.js"></script>
+  <script>
+    // dashboard init handled in app.js
+  </script>
+</body>
+</html>

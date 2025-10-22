@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatly| Child Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body class="child-dashboard">
+
+  <header>
+    <h1>Hi there, <span id="childName">Buddy!</span></h1>
+    <p>Let’s explore the web safely together </p>
+    
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+  </header>
+
+  <main>
+    <section class="search-area">
+      <h2>Safe Search</h2>
+      <input type="text" id="searchInput" placeholder="Type what you want to learn about...">
+      <button id="searchBtn">Search</button>
+      <p id="searchResult"></p>
+    </section>
+
+    <section class="learn">
+      <h2>Learn Something New</h2>
+      <ul>
+        <li>How computers work 💻</li>
+        <li>Building good online habits 🌐</li>
+        <li>Fun coding games 🎮</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="search.js"></script>
+</body>
+</html>
