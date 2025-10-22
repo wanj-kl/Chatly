@@ -22,6 +22,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
 
   if (accountType === 'personal') {
     const user = { name, email, password, role: 'personal' };
+    localStorage.setItem('personalUser', JSON.stringify(user)); 
     localStorage.setItem('currentUser', JSON.stringify(user));
     window.location.href = 'personal.html';
   } else {
