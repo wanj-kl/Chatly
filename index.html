@@ -67,6 +67,111 @@
     </div>
   </section>
 
+  <!--Chat Interface -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Guardian Agent</title>
+    <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+    <div id="chat-container">
+        <div class="message ai">
+            <div class="avatar">G</div>
+            <div class="text-content">Hello! I am your AI Guardian Agent, powered by Gemma. How can I help you today?</div>
+        </div>
+    </div>
+
+    <div id="input-area">
+        <form id="input-form">
+            <textarea id="prompt-input" placeholder="Ask the agent anything..." required></textarea>
+            <button type="submit" id="send-button" disabled>➤</button>
+        </form>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const inputForm = document.getElementById('input-form');
+        const promptInput = document.getElementById('prompt-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Enable/Disable button based on input
+        promptInput.addEventListener('input', () => {
+            sendButton.disabled = promptInput.value.trim() === '';
+        });
+
+        // Function to create and append a new message bubble
+        function appendMessage(role, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', role);
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.classList.add('avatar');
+            avatarDiv.textContent = role === 'user' ? 'You' : 'G';
+
+            const textContentDiv = document.createElement('div');
+            textContentDiv.classList.add('text-content');
+            
+            // Format text to handle line breaks naturally
+            textContentDiv.innerHTML = text.replace(/\n/g, '<br>');
+
+            messageDiv.appendChild(avatarDiv);
+            messageDiv.appendChild(textContentDiv);
+            chatContainer.appendChild(messageDiv);
+            
+            // Scroll to the latest message
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            return textContentDiv; // Return text container for loading state
+        }
+
+        inputForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const prompt = promptInput.value.trim();
+            if (!prompt) return;
+
+            // 1. Display User Message
+            appendMessage('user', prompt);
+            
+            // 2. Clear Input and Disable Button
+            promptInput.value = '';
+            sendButton.disabled = true;
+
+            // 3. Display AI Loading Message
+            const aiTextContent = appendMessage('ai', '...').querySelector('.text-content');
+            aiTextContent.textContent = 'Agent is thinking...';
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // 4. Update AI Message with Final Response
+                    aiTextContent.innerHTML = data.response.replace(/\n/g, '<br>');
+                } else {
+                    // 4. Display Error
+                    aiTextContent.innerHTML = 'Error: ' + (data.error || 'Failed to get a response.');
+                }
+            } catch (error) {
+                aiTextContent.innerHTML = 'Network Error: Could not connect to the server.';
+                console.error('Fetch error:', error);
+            }
+            
+            // Re-enable button if input is not empty (though usually it is empty here)
+            sendButton.disabled = promptInput.value.trim() === '';
+        });
+    </script>
+</body>
+</html>
+
   <!-- Footer -->
   <footer>
     <p>© 2025 Chatly</p>
