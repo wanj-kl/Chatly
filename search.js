@@ -123,6 +123,16 @@ async function setupSearch() {
       if (currentUser.role === 'child') {
         // 1️⃣ Show warning to the child
         resultBox.innerHTML = "<p class='alert'>⚠️ Content blocked. This search may be unsafe.</p>";
+        // Save **all searches** (safe or unsafe) for the parent dashboard
+if (currentUser.role === 'child') {
+  let allSearches = JSON.parse(localStorage.getItem('allChildSearches')) || [];
+  allSearches.push({
+    child: currentUser.name,
+    query: query,
+    time: new Date().toLocaleString()
+  });
+  localStorage.setItem('allChildSearches', JSON.stringify(allSearches));
+}
 
         // 2️⃣ Save the alert in an array for parent dashboard
         let alerts = JSON.parse(localStorage.getItem('guardianAlerts')) || [];
