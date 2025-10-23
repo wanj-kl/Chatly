@@ -1,29 +1,51 @@
 <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Parent Dashboard</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-                h1 { color: #007bff; }
-                .log-entry { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #ccc; }
-                .alert { 
-                    border-left: 5px solid red !important;
-                    background-color: #ffe0e0; /* Light red background */
-                    animation: flash-alert 2s infinite alternate;
-                }
-                .timestamp { font-size: 0.8em; color: #666; display: block; margin-bottom: 5px; }
-                @keyframes flash-alert {
-                    from { box-shadow: 0 0 10px 0 rgba(255,0,0,0.5); }
-                    to { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Guardian Activity Dashboard (No Real-time)</h1>
-            <p>Alerts are shown when the page is loaded or refreshed.</p>
-            <div id="log-display">
-                ${logHtml || '<p>No search activity found.</p>'}
-            </div>
-        </body>
-        </html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatly| Parent Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body class="parent-dashboard">
+
+  <header>
+    <h1>Welcome !</h1>
+    <p>Your children’s online safety at a glance.</p>
+
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+  </header>
+
+  <main>
+    <section class="child-section">
+      <a href="child.html"> <h2>Child Account</h2></a>
+
+      <!-- <ul id="childList">
+        <li>Mary - No flagged activity ✅</li>
+        <li>John - ⚠️ Possible unsafe query detected.</li>
+      </ul> -->
+    </section>
+
+    <section class="controls">
+      <h2>Parental Controls</h2>
+      <div class="block">
+        <p><strong>Block Categories:</strong></p>
+        <label><input type="checkbox"> Adult content</label><br>
+        <label><input type="checkbox"> Violence</label><br>
+        <label><input type="checkbox"> Social media</label>
+      </div>
+
+      <div class="limit">
+        <p><strong>Set Time Limit (hours/day):</strong></p>
+        <input type="number" min="1" max="12" value="3"> hrs
+      </div>
+    </section>
+
+    <section class="alerts">
+      <h2>Guardian Alerts</h2>
+      <p id="alerts"></p>
+    </section>
+  </main>
+
+  <script src="parent.js"></script>
+</body>
+</html>
