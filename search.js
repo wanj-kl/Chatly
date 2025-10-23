@@ -116,6 +116,15 @@ async function setupSearch() {
       resultBox.innerHTML = "<p>Please enter a search term.</p>";
       return;
     }
+    if (currentUser && currentUser.role === 'child') {
+      let allSearches = JSON.parse(localStorage.getItem('allChildSearches')) || [];
+      allSearches.push({
+        child: currentUser.name,
+        query: query,
+        time: new Date().toLocaleString()
+      });
+      localStorage.setItem('allChildSearches', JSON.stringify(allSearches));
+    }
 
     const foundUnsafe = unsafeKeywords.some(word => query.includes(word));
 
