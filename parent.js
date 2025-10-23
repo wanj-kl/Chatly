@@ -21,7 +21,20 @@
         <small>${a.time}</small>
       </div>
     `).join('') + `<button id="clearAlerts">Clear Alerts</button>`;
-  }
+          }
+          
+// Load all child searches
+const allSearches = JSON.parse(localStorage.getItem('allChildSearches')) || [];
+const searchListEl = document.getElementById('childSearchList');
+
+if (allSearches.length === 0) {
+  searchListEl.innerHTML = "<li>No searches yet.</li>";
+} else {
+  searchListEl.innerHTML = allSearches.map(entry => `
+    <li><strong>${entry.child}</strong> searched for: "${entry.query}" at ${entry.time}</li>
+  `).join('');
+}
+
 
   // Clear alerts when clicked
   document.addEventListener('click', (e) => {
