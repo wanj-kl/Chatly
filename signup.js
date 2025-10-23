@@ -35,7 +35,15 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     }
 
     const parent = { name, email, password, role: 'parent', childName, childAge };
-    const child = { name: childName, age: childAge, parentEmail: email, role: 'child' };
+    const child = { 
+  name: childName, 
+  email: `${childName}_${email}`,  // ✅ auto-generate child's email
+  password: password,      // ✅ child's login password
+  age: childAge, 
+  parentEmail: email, 
+  role: 'child' 
+};
+
 
     localStorage.setItem('parentUser', JSON.stringify(parent));
     localStorage.setItem('childUser', JSON.stringify(child));
