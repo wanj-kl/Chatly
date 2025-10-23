@@ -131,35 +131,6 @@ function renderParentDashboard(log) {
     });
 
     return `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Parent Dashboard</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-                h1 { color: #007bff; }
-                .log-entry { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #ccc; }
-                .alert { 
-                    border-left: 5px solid red !important;
-                    background-color: #ffe0e0; /* Light red background */
-                    animation: flash-alert 2s infinite alternate;
-                }
-                .timestamp { font-size: 0.8em; color: #666; display: block; margin-bottom: 5px; }
-                @keyframes flash-alert {
-                    from { box-shadow: 0 0 10px 0 rgba(255,0,0,0.5); }
-                    to { box-shadow: 0 0 0 0 rgba(255,0,0,0.0); }
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Guardian Activity Dashboard (No Real-time)</h1>
-            <p>Alerts are shown when the page is loaded or refreshed.</p>
-            <div id="log-display">
-                ${logHtml || '<p>No search activity found.</p>'}
-            </div>
-        </body>
-        </html>
     `;
 }
 
