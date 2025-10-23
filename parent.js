@@ -14,7 +14,7 @@ const app = express();
 
 // Initialize the profanity filter
 const filter = new Filter();
-filter.addWords('kill', 'suicide', 'self-harm', 'explicit-site', 'dark-web'); 
+filter.addWords('kill', 'suicide', 'self-harm', 'explicit-site', 'dark-web', 'violence'); 
 
 // ... (OpenAI client initialization) ...
 
