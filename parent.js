@@ -131,6 +131,56 @@ function renderParentDashboard(log) {
     });
 
     return `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatly| Parent Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body class="parent-dashboard">
+
+  <header>
+    <h1>Welcome !</h1>
+    <p>Your children’s online safety at a glance.</p>
+
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+  </header>
+
+  <main>
+    <section class="child-section">
+      <a href="child.html"> <h2>Child Account</h2></a>
+
+      <!-- <ul id="childList">
+        <li>Mary - No flagged activity ✅</li>
+        <li>John - ⚠️ Possible unsafe query detected.</li>
+      </ul> -->
+    </section>
+
+    <section class="controls">
+      <h2>Parental Controls</h2>
+      <div class="block">
+        <p><strong>Block Categories:</strong></p>
+        <label><input type="checkbox"> Adult content</label><br>
+        <label><input type="checkbox"> Violence</label><br>
+        <label><input type="checkbox"> Social media</label>
+      </div>
+
+      <div class="limit">
+        <p><strong>Set Time Limit (hours/day):</strong></p>
+        <input type="number" min="1" max="12" value="3"> hrs
+      </div>
+    </section>
+
+    <section class="alerts">
+      <h2>Guardian Alerts</h2>
+      <p id="alerts"></p>
+    </section>
+  </main>
+
+</body>
+</html>
     `;
 }
 
