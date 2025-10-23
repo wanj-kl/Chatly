@@ -59,11 +59,15 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
     window.location.href = 'parent.html';
   } 
-  else if (childUser && childUser.email === email && childUser.password === password) {
-    currentUser = childUser;
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    window.location.href = 'child.html';
-  } 
+  
+  else if (childUser && childUser.email.toLowerCase().trim() === email.toLowerCase().trim() 
+  && childUser.password === password) 
+{
+  currentUser = childUser;
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  window.location.href = 'child.html';
+}
+
   else {
     msg.textContent = 'Invalid credentials. Please try again.';
   }
