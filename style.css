@@ -194,6 +194,13 @@ button.muted{background:var(--muted)}
 .muted{color:#6b7280}
 footer{margin-top:8px; color:white; font-size:13px}
 
+body {
+    font-family: 'Poppins', sans-serif; /* Use your preferred font */
+    background: var(--bg); /* Use the defined background variable */
+    margin: 0;
+    padding: 0; 
+}
+
 /* 1. Chat Layout Structure */
 .chat-body {
     display: flex;
