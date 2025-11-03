@@ -14,44 +14,6 @@ body.landing-body {
   margin: 0;
   padding: 0;
 }
-/* Base styles for all chat messages */
-.chat-message {
-    max-width: 80%; /* Limits the width of the bubble */
-    padding: 10px 15px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    line-height: 1.5;
-    clear: both; /* Ensures new messages don't float next to previous ones */
-}
-
-/* Style for the AI/Bot Response (Left-aligned - looks like Gemini/Chatly) */
-.bot-response {
-    background-color: #e6e6e6; /* Light gray for the AI */
-    float: left;
-    /* Optional: Small triangle/tail on the left */
-    border-bottom-left-radius: 5px; 
-}
-
-/* Style for the User's Query (Right-aligned - looks like the user) */
-.user-query-display {
-    background-color: #007bff; /* Blue for the user */
-    color: white;
-    float: right;
-    /* Optional: Small triangle/tail on the right */
-    border-bottom-right-radius: 5px;
-}
-
-/* Clear the float after the messages to prevent layout issues */
-#searchResult {
-    overflow: hidden; /* Contains the floated messages */
-    padding-top: 10px; /* Space above results */
-}
-
-/* Optional: Styling for the inner paragraphs */
-.chat-message p {
-    margin: 0;
-    word-wrap: break-word; /* Ensures long text wraps */
-}node
 
 /* Navbar */
 .navbar {
