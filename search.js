@@ -6,6 +6,30 @@ document.getElementById('searchBtn').addEventListener('click', () => {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 }) 
 
+// Helper function to create and append a message to the chat log
+function appendMessage(text, type) {
+    const log = document.getElementById('message-log'); 
+    
+    // Create the message bubble HTML structure
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', type);
+    
+    const textNode = document.createElement('p');
+    
+    textNode.innerHTML = text; 
+    
+    messageDiv.appendChild(textNode);
+    log.appendChild(messageDiv);
+    
+    // Auto-scroll to the newest message at the bottom
+    log.scrollTop = log.scrollHeight;
+}
+
+// ==========================================================
+// Your existing loadUnsafeKeywords function goes here...
+async function loadUnsafeKeywords() { 
+// ...
+
 //   if (!query) {
 //     resultBox.innerHTML = "<p>Please enter a search term.</p>";
 //     return;
@@ -109,13 +133,18 @@ async function setupSearch() {
 
   document.getElementById('searchBtn').addEventListener('click', () => {
     const query = document.getElementById('searchInput').value.toLowerCase();
-    const resultBox = document.getElementById('searchResult');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (!query) {
-      resultBox.innerHTML = "<p>Please enter a search term.</p>";
-      return;
+      appendMessage("Please enter a search term.", 'bot-message'); 
+      return;
     }
+    // NEW CODE: Display the user's query immediately
+    appendMessage(query, 'user-message'); 
+
+    // NEW CODE: Clear the input field
+    document.getElementById('searchInput').value = '';
+    
     if (currentUser && currentUser.role === 'child') {
       let allSearches = JSON.parse(localStorage.getItem('allChildSearches')) || [];
       allSearches.push({
@@ -128,16 +157,18 @@ async function setupSearch() {
 
     const foundUnsafe = unsafeKeywords.some(word => query.includes(word));
 
+    let botMessage = '';
     if (foundUnsafe) {
       if (currentUser.role === 'child') {
         // 1️⃣ Show warning to the child
-        resultBox.innerHTML = "<p class='alert'>⚠️ Content blocked. This search may be unsafe.</p>";
+        botMessage = "⚠️ **Content blocked.** This search may be unsafe. Please try a different query.";
         // Save **all searches** (safe or unsafe) for the parent dashboard
 if (currentUser.role === 'child') {
   let allSearches = JSON.parse(localStorage.getItem('allChildSearches')) || [];
   allSearches.push({
     child: currentUser.name,
     query: query,
+    message: "Unsafe search attempt detected.",
     time: new Date().toLocaleString()
   });
   localStorage.setItem('allChildSearches', JSON.stringify(allSearches));
@@ -155,13 +186,15 @@ if (currentUser.role === 'child') {
 
       } else {
         // Parent user
-        resultBox.innerHTML = "<p class='alert'>⚠️ Content blocked. This search may be unsafe.";
+        botMessage = "⚠️ **Content blocked.** This search may be unsafe.";
       }
 
     } else {
-      resultBox.innerHTML = `<p>✅ Safe content found for: <strong>${query}</strong><br>
-      Here’s what Chatly found: educational and friendly results.</p>`;
+      botMessage = `✅ **Safe content found** for: **${query}**<br>
+      Here’s what Chatly found: educational and friendly results.`;
     }
+    // NEW CODE: Display the Bot's Message once, at the end of the logic
+    appendMessage(botMessage, 'bot-message');
   });
 }
 
