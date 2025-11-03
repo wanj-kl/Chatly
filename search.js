@@ -204,3 +204,4 @@ setupSearch();
 function goHome() {
   window.location.href = "index.html";
 }
+<script src="search.js"></script>
