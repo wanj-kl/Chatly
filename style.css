@@ -168,14 +168,6 @@ footer {
   transition: background 0.3s ease;
 }
 
-
-
-
-body{
-  font-family:Inter, system-ui, Arial;
-  background:var(--bg);
-  margin:0; padding:24px;
-}
 .auth-container{
   max-width:420px; margin:40px auto;
 }
