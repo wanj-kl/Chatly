@@ -195,8 +195,8 @@ button.muted{background:var(--muted)}
 footer{margin-top:8px; color:white; font-size:13px}
 
 body {
-    font-family: 'Poppins', sans-serif; /* Use your preferred font */
-    background: var(--bg); /* Use the defined background variable */
+    font-family: 'Poppins', sans-serif; 
+    background: var(--bg); 
     margin: 0;
     padding: 0; 
 }
@@ -239,7 +239,7 @@ body {
     border-radius: 18px;
     margin-bottom: 15px;
     line-height: 1.4;
-    clear: both; /* Prevents bubbles from floating next to each other */
+    clear: both; 
 }
 
 /* User Message (Sent - Right Alignment) */
@@ -254,7 +254,7 @@ body {
 .bot-message {
     background-color: #e6e6e6; /* Light Gray */
     color: #333;
-    align-self: flex-start; /* Aligns the bubble to the left */
+    align-self: flex-start; 
     border-bottom-left-radius: 5px; 
 }
 
