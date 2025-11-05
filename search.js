@@ -23,28 +23,40 @@ async function loadUnsafeKeywords() {
     return hardcodedKeywords;
 }
 
-// Main function to set up the search listener
-async function setupSearch() {
+// New Main function to set up the chat listener (Renamed to 'setupChatbot' for clarity)
+async function setupChatbot() {
     // We use the simpler hardcoded list if the metta file doesn't load
     const unsafeKeywords = await loadUnsafeKeywords(); 
 
-    document.getElementById('searchBtn').addEventListener('click', () => {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    // IMPORTANT: Use the new ID for the green arrow button
+    const sendButton = document.getElementById('sendBtn'); 
+    
+    // IMPORTANT: Use the ID for the main input field
+    const chatInput = document.getElementById('searchInput'); 
+
+    const handleSendMessage = () => {
+        // Use chatInput.value since the input is now a standard input/textarea
+        const query = chatInput.value.toLowerCase().trim(); 
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-        // 1. Input Validation
         if (!query) {
             appendMessage("Please enter a search term.", 'bot-message'); 
             return;
         }
 
-        // 2. Display User Message & Clear Input
-        appendMessage(query, 'user-message'); // <-- THIS CREATES THE BLUE BUBBLE
-        document.getElementById('searchInput').value = '';
-        
-        // --- (Logging logic removed for brevity, as it was in the full version) ---
+        // 1. Display User Message & Clear Input
+        appendMessage(query, 'user-message');
+        chatInput.value = '';
 
-        // 3. Check for Unsafe Keywords
+        // *** ADDED FROM PREVIOUS SUGGESTION ***
+        // Auto-resize logic (important if you use a <textarea>)
+        // You might need to adjust this depending on if your final HTML uses <input> or <textarea>
+        if (chatInput.tagName === 'TEXTAREA') {
+            chatInput.style.height = 'auto'; // Reset height
+        }
+        // *** END ADDED LOGIC ***
+
+        // 2. Check for Unsafe Keywords
         const foundUnsafe = unsafeKeywords.some(word => query.includes(word));
         let botMessage = '';
 
@@ -55,18 +67,34 @@ async function setupSearch() {
                 botMessage = "⚠️ **Content blocked.** This search may be unsafe.";
             }
         } else {
-            // Safe search response
             botMessage = `✅ **Safe content found** for: **${query}**<br>
             Here’s what Chatly found: educational and friendly results.`;
         }
         
-        // 4. Display the Bot's Message
-        appendMessage(botMessage, 'bot-message'); // <-- THIS CREATES THE GRAY BUBBLE
+        // 3. Display the Bot's Message
+        appendMessage(botMessage, 'bot-message');
+    };
+
+    // New Event Listeners for click and Enter key
+    sendButton.addEventListener('click', handleSendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for new line
+            e.preventDefault(); 
+            handleSendMessage();
+        }
     });
+
+    // Optional: Auto-resize textarea logic (only necessary if using <textarea>)
+    if (chatInput.tagName === 'TEXTAREA') {
+        chatInput.addEventListener('input', () => {
+            chatInput.style.height = 'auto'; // Reset height
+            chatInput.style.height = chatInput.scrollHeight + 'px'; // Set to scroll height
+        });
+    }
 }
 
-// Initialize the search functionality
-setupSearch();
+// Initialize the chatbot functionality
+document.addEventListener('DOMContentLoaded', setupChatbot);
 
 // Optional: Home button redirect
 function goHome() {
