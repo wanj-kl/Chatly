@@ -1,5 +1,3 @@
-// search.js - Use this complete, corrected file content.
-
 // Helper function to create and append a message to the chat log
 function appendMessage(text, type) {
     const log = document.getElementById('message-log'); 
