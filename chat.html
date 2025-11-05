@@ -26,10 +26,31 @@
                 <p>Hello! I'm Chatly, your secure AI Guardian. What would you like to search or chat about today?</p>
         </div>
 
-        <div class="chat-input-area">
-            <input type="text" id="searchInput" placeholder="Ask Chatly..." autocomplete="off">
-            <button id="searchBtn" class="btn primary">Search</button>
+        <div class="input-container-wrapper"> 
+    
+    <div class="chat-input-area liquid-glass-input">
+        
+        <input type="text" id="searchInput" placeholder="Ask anything...">
+        
+        <div class="input-actions">
+            <i class="fas fa-microphone voice-icon"></i> 
+            
+            <button class="action-btn deep-search-btn"><i class="fas fa-search"></i> Deep search</button>
+            <button class="action-btn search-btn"><i class="fas fa-globe"></i> Search</button>
         </div>
+        
+        <button id="sendBtn" class="send-btn arrow-btn">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <div class="chat-options">
+        <span class="option-item"><i class="fas fa-paperclip"></i> Attach</span>
+        <span class="option-item"><i class="fas fa-lightbulb"></i> Browse Prompts</span>
+        <span class="char-count">20 / 3,000</span>
+    </div>
+    <p class="disclaimer">Script may generate inaccurate information about people, places, or facts. Model: Script AI v1.3</p>
+</div>
     </main>
 
     <footer>
